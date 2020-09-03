@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Formulär</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Formulär</h1>
+            <div>
+                <label for="film">Favorit film</label>
+                <input type="radio" name="film" value="1"> Shrek 1
+                <input type="radio" name="film" value="2"> Shrek 2
+                <input type="radio" name="film" value="3"> Shrek 3
+            </div>
+            <div>
+                <label for="bok">Favorit bok</label>
+                <input type="radio" name="bok" value="1"> Harry Potter 1
+                <input type="radio" name="bok" value="2"> Harry Potter 2
+                <input type="radio" name="bok" value="3"> Harry Potter 3
+            </div>
+            <label for="an">Anmärkning</label>
+            <textarea name="an" id="an" class="form-control"></textarea>
+            <button type="submit" class="btn btn-primary">Skicka</button>
+        </form>
+    </div>
+</body>
+</html>
