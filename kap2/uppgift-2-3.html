@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Formulär</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Styla</h1>
+        <form action="uppgift-2-3.php" method="POST">
+            <label>färg</label>
+            <div>
+                <input type="radio" name="färg" value="red" checked> Red
+                <input type="radio" name="färg" value="blue"> Blue
+                <input type="radio" name="färg" value="green"> Greed
+                <input type="radio" name="färg" value="yellow"> Yellow
+            </div>
+            <button type="submit" class="btn btn-primary">Skicka</button>
+        </form>
+    </div>
+</body>
+</html>

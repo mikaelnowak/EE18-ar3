@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Formulär</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Formulär</h1>
+        <form action="uppgift-2-2.php" method="POST">
+            <label for="anamn">Ange användarnamn</label>
+            <input id="anamn" type="text" class="form-control" name="anamn">
+            <label for="mail">Ange mail</label>
+            <input id="mail" type="email" class="form-control" name="mail">
+            <label for="pass">Ange lösenord</label>
+            <input id="pass" type="password" class="form-control" name="pass">
+            <label for="nummer">Ange telefonnummer</label>
+            <input id="nummer" type="text" class="form-control" name="nummer">
+            <label>Intressen</label>
+            <div>
+                <input type="checkbox" name="intresse" value="1"> Spel
+                <input type="checkbox" name="intresse" value="2"> Läsa
+                <input type="checkbox" name="intresse" value="3"> Måla
+                <input type="checkbox" name="intresse" value="4"> Phykologi
+            </div>
+            <label>kontakt</label>
+            <div>
+                <input type="radio" name="kontakt" value="telefon" checked> Telefon
+                <input type="radio" name="kontakt" value="mail"> E-mail
+            </div>
+            <label for="an">Anmärkning</label>
+            <textarea name="an" id="an" class="form-control"></textarea>
+            <button type="submit" class="btn btn-primary">Skicka</button>
+        </form>
+    </div>
+</body>
+</html>
