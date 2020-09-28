@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Formulär</h1>
+        <form action="uppgift-3-5.php" method="POST">
+            <label for="belop">Ange belop</label>
+            <input id="belop" type="text" class="form-control" name="belop">
+            <label for="ränta">Ange ränta</label>
+            <input id="ränta" type="ränta" class="form-control" name="ränta">
+            <label>lånetid</label>
+            <div>
+                <input type="radio" name="tid" value="1"> 1
+                <input type="radio" name="tid" value="3"> 3
+                <input type="radio" name="tid" value="5"> 5
+            </div>
+            <button type="submit" class="btn btn-primary">Skicka</button>
+        </form>
+    </div>
+</body>
+</html>
