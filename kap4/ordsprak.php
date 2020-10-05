@@ -35,7 +35,7 @@
             $i--;
         }
     } */
-    for ($i=0; $i < 6; $i++) { 
+    for ($i = 0; $i < 6; $i++) { 
         $index = rand(0, 9);
         if (!in_array($index, $tagna)) {
             echo "<li>$ordsprak[$index]</li>";
