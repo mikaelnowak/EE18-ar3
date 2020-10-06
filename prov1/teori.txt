@@ -1,0 +1,5 @@
+fråga 1:
+Bra praxis inom webbserverprogrammering är fin text, korekt namngeda variablar och debugging med print_r och liknande.
+
+fråga 2:
+Man kan använda sig av LAMP. Det är en linux server som ens webbaplikation kommer att köras på för att kunna fungera. Man kan installera och använda sig av LAMP tack vare Docker och andra appar som bygger upp och kör LAMP servrar lokalt. Och om man vill nå LAMP servern så kommer man att då behöva gå in på sin local host. Då kommer man att kunna köra sin PHP kod på en webbläsare.
