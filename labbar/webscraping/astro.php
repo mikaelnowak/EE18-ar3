@@ -21,11 +21,26 @@
         } else {
             echo "<p>Hittade inte horoskopets början!</p>";
         }
-        $slut = strpos($sidan, "c-post_tag__wrapper", $start);
+        $slut = strpos($sidan, "c-widget__area", $start);
         if ($slut !== false) {
             echo "<p>Horoskopet började på position $slut</p>";
         } else {
-            echo "<p>Hittade inte horoskopets början!</p>";
+            echo "<p>Hittade inte horoskopets slut!</p>";
+        }
+
+        $caHoroskopText = substr($sidan, $start + 26, $slut - $start);
+        //echo $caHoroskopText;
+
+        /* $start = strpos($caHoroskopText, "<div class=\"o-indenter\">");
+        $slut = strpos($caHoroskopText, "</div>", $start);
+        $del1 = substr($caHoroskopText, $start, $slut - $start);
+        echo "$del1</div>\n"; */
+
+        for ($i = 0; $i < 24; $i++) {
+            $start = strpos($caHoroskopText, "<div class=\"o-indenter\">", $slut);
+            $slut = strpos($caHoroskopText, "</div>", $start);
+            $del = substr($caHoroskopText, $start, $slut - $start);
+            echo "$del</div>\n";
         }
         ?>
     </div>
