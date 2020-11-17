@@ -11,53 +11,79 @@
 </head>
 <body>
     <div class="kontainer">
-        <?php
-        // Ange katalogen
-        $katalog = "./bilder";
+    <h1>Ladda upp en fil</h1>
+      <form action="#" method="POST" enctype="multipart/form-data">
+          <label>Ange filnamn
+          <input type="file" name="file">
+          </label>
+          <button type="submit" name="submit">Submit</button>
+      </form>
+      <?php
+      // Ladda upp bilder till katalogen
+      if (isset($_POST["submit"])) {
+        $file = $_FILES["file"];
+        var_dump($file);
 
-        echo "<h1>Bildgalleri</h1>";
+        $fileName = $file["name"];
+        $fileSize = $file["size"];
+        $fileType = $file["type"];
+        $fileTmpName = $file["tmp_name"];
+        $fileError = $file["error"];
 
-        // Hämta katalogens innehåll
-        $filer = scandir($katalog);
-        
-        // Loopa igenom alla funna filer
-        foreach ($filer as $fil) {
+        //allowed file exentsion
 
-            // Visa inte ”." och ”.."
-            if ($fil == '.' || $fil == '..') {
-                continue;
+        $allowed = [ "png","gif","jpeg"];
+        $fileType = explode("/", $fileType);
+
+        if (in_array($fileType[1], $allowed)) {
+            if ($error !== 0) {
+                if ($fileSize <= 500000) {
+                    $fileNameNew = uniqid('', true).".$imageType";
+
+                    $fileDestination = "./bilder/$fileNameNew";
+
+                    move_uploaded_file($fileTempName, $fileDestination);
+                } else {
+                    echo "<p>The file is to large</p>";
+                }
+            } else {
+                echo "<p>Something went wrong</p>";
             }
-            
-            // Visa bara bilden om filformat ”.jpg”
-            $info = pathinfo($fil);
+              
+          } else {
+              echo "<p>File types jpeg, png and gif are only allowed</p>";
+          }
+      }
 
-            echo "<div id=\"carouselExampleIndicators\" class=\"carousel slide\" data-ride=\"carousel\">
-            <ol class=\"carousel-indicators\">
-              <li data-target=\"#carouselExampleIndicators\" data-slide-to=\"0\" class=\"active\"></li>
-              <li data-target=\"#carouselExampleIndicators\" data-slide-to=\"1\"></li>
-              <li data-target=\"#carouselExampleIndicators\" data-slide-to=\"2\"></li>
-            </ol>
-            <div class=\"carousel-inner\">";
+      // Ange katalogen
+      $katalog = "./bilder";
 
-            //var_dump($info);
-            if ($info["extension"] == "jpg") {
-                echo "<div class=\"carousel-item active\">
-                <img src=\"./bilder/$info[basename]\" class=\"d-block w-100\">
-              </div>";
-            }
+      echo "<h1>Bildgalleri</h1>";
 
-            echo "</div>
-            <a class=\"carousel-control-prev\" href=\"#carouselExampleIndicators\" role=\"button\" data-slide=\"prev\">
-              <span class=\"carousel-control-prev-icon\" aria-hidden=\"true\"></span>
-              <span class=\"sr-only\">Previous</span>
-            </a>
-            <a class=\"carousel-control-next\" href=\"#carouselExampleIndicators\" role=\"button\" data-slide=\"next\">
-              <span class=\"carousel-control-next-icon\" aria-hidden=\"true\"></span>
-              <span class=\"sr-only\">Next</span>
-            </a>
-            </div>";
-        }
-        ?>
+      // Hämta katalogens innehåll
+      $filer = scandir($katalog);
+      
+      // Loopa igenom alla funna filer
+      foreach ($filer as $fil) {
+
+          // Visa inte ”." och ”.."
+          if ($fil == '.' || $fil == '..') {
+              continue;
+          }
+          
+          // Visa bara bilden om filformat ”.jpg”
+          $info = pathinfo($fil);
+          //var_dump($info);
+
+          echo "<tabel>";
+
+          if ($info["extension"] == "jpg" || $info["extension"] == "png" || $info["extension"] == "jpeg") {
+            echo "<tr><td><img src=\"./bilder/$info[basename]\"></tr></td>";
+          }
+
+          echo "<tabel>";
+      }
+      ?>
     </div>
 </body>
 </html>
