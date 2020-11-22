@@ -29,6 +29,13 @@
                 echo "<p>Läst in $antalDjur djur.</p>";
 
                 //Skriv ut alla djur i en tabel
+
+                foreach ($rader as $rad) {
+                    if(substr($rad, 0, 1) == $sokterm) {
+                        $antalTräffar++;
+                    }
+                }
+                
                 echo "<table>
                       <th>Det finns $antalTräffar som börjar på $sokterm</th>";
 
@@ -36,7 +43,6 @@
                     if(substr($rad, 0, 1) == $sokterm) {
                         $rad = explode(" (", $rad);
                         echo "<tr><td>$rad[0]</tr></td>";
-                        $antalTräffar++;
                     }
                 }
 
