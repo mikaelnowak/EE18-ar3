@@ -18,20 +18,30 @@
             <button>Sök</button>
         </form>
         <?php
-        // Kolla om det finns nåt i inputen
-        $sokterm = filter_input(INPUT_POST, 'sokterm', FILTER_SANITIZE_STRING);
-        if ($sokterm) {
-            $rader = file("animals.txt");
-            $antalTräffar = 0;
-            $antalDjur = count($rader);
+            $sokterm = filter_input(INPUT_POST, 'sokterm', FILTER_SANITIZE_STRING);
+            if ($sokterm) {
+                //Lös av filen
+                $rader = file("animals.txt");
+                $antalTräffar = 0;
 
-            foreach ($rader as $rad) {
-                if($rad[0] = $sokterm) {
-                    echo "<p>$rad</p>";
-                    $antalTräffar++;
+                //Skriva ut hur lång listan är
+                $antalDjur = count($rader);
+                echo "<p>Läst in $antalDjur djur.</p>";
+
+                //Skriv ut alla djur i en tabel
+                echo "<table>
+                      <th>Det finns $antalTräffar som börjar på $sokterm</th>";
+
+                foreach ($rader as $rad) {
+                    if(substr($rad, 0, 1) == $sokterm) {
+                        $rad = explode(" (", $rad);
+                        echo "<tr><td>$rad[0]</tr></td>";
+                        $antalTräffar++;
+                    }
                 }
+
+                echo "</table>";
             }
-        }
         ?>
     </div>
 </body>
