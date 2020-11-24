@@ -1,4 +1,7 @@
-
+$user = "gunnar"
+$db = "gunnar"
+$host = "localhost"
+$pass = "nnWFMiNx8yveWhU5"
 +--------+------------+-----------+-----------+----+--------+
 | reg    | marke      | modell    | arsmodell | id | pris   |
 +--------+------------+-----------+-----------+----+--------+
@@ -20,7 +23,7 @@ Uppgift 1: SELECT * FROM bilar WHERE arsmodell<=2001;
 
 Uppgift 2: SELECT * FROM bilar WHERE marke="Volvo" AND arsmodell<=2001;
 
-Uppgift 3: SELECT * FROM bilar WHERE arsmodell>=1980 AND arsmodell<1990;                                                                                       >
+Uppgift 3: SELECT * FROM bilar WHERE arsmodell>=1980 AND arsmodell<1990;
 
 Uppgift 4: SELECT COUNT(marke) FROM bilar WHERE marke="Volvo";
 
@@ -165,8 +168,7 @@ Uppgift 3: SELECT reg, marke, modell FROM bilar WHERE reg LIKE "A%1%";
 
 Uppgift 4: SELECT COUNT(reg) AS "Antal bilar med reg som startar med A" FROM bilar WHERE reg LIKE "A%";
 
-Uppgift 5: SELECT personer.fnamn AS "Fornamn pa K och slutar pa E", personer.enamn AS "Efternamn som borjar pa A", bilar.reg AS Registrering FROM bilar INNER JOIN personer WHERE bilar.reg LIKE "A%1%" AND personer.fnamn LIKE "K%e"
-AND personer.enamn LIKE "A%";
+Uppgift 5: SELECT personer.fnamn, personer.enamn, bilar.reg FROM bilar INNER JOIN personer WHERE bilar.reg LIKE "A%1%" AND personer.fnamn LIKE "K%e" AND personer.enamn LIKE "A%";
 
 Uppgift 6: SELECT fnamn FROM personer WHERE enamn LIKE "%\_%";
 
