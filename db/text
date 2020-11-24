@@ -1,0 +1,173 @@
+
++--------+------------+-----------+-----------+----+--------+
+| reg    | marke      | modell    | arsmodell | id | pris   |
++--------+------------+-----------+-----------+----+--------+
+| ABC123 | Saab       | 9-5       |      2003 |  1 | 130000 |
+| DEF123 | Volvo      | S80       |      2002 |  2 | 140000 |
+| GHI123 | Mazda      | 626       |      2001 |  3 |  80000 |
+| JKL123 | Audi       | A8        |      2001 |  4 | 150000 |
+| MNO123 | BMW        | 323       |      1998 |  5 |  60000 |
+| PQR123 | Ford       | Mondeo    |      2001 |  6 |  90000 |
+| STU123 | Volvo      | 740       |      1987 |  7 |  35000 |
+| VYX123 | Volkswagen | Golf      |      1988 |  8 |  40000 |
+| ABC456 | Volkswagen | Polo      |      2003 |  9 |  75000 |
+| DEF456 | Toyota     | Carina II |      1998 | 10 |  30000 |
++--------+------------+-----------+-----------+----+--------+
+
+Ställa frågor
+
+Uppgift 1: SELECT * FROM bilar WHERE arsmodell<=2001;
+
+Uppgift 2: SELECT * FROM bilar WHERE marke="Volvo" AND arsmodell<=2001;
+
+Uppgift 3: SELECT * FROM bilar WHERE arsmodell>=1980 AND arsmodell<1990;                                                                                       >
+
+Uppgift 4: SELECT COUNT(marke) FROM bilar WHERE marke="Volvo";
+
+Uppgift 5: SELECT marke, COUNT(*) FROM bilar GROUP BY marke DESC;
+
+Uppgift 6: SELECT marke, MIN(pris), MAX(pris), SUM(pris) FROM bilar GROUP BY marke;
+
+Uppgift 7: SELECT arsmodell, COUNT(*), AVG(pris) FROM bilar GROUP BY arsmodell DESC;
+
++--------+------------+-----------+-----------+--------+-------+
+| reg    | marke      | modell    | arsmodell | pris   | agare |
++--------+------------+-----------+-----------+--------+-------+
+| ABC123 | Saab       | 9-5       |      2003 | 130000 |     1 |
+| DEF123 | Volvo      | S80       |      2002 | 140000 |     2 |
+| GHI123 | Mazda      | 626       |      2001 |  80000 |     3 |
+| JKL123 | Audi       | A8        |      2001 | 150000 |     5 |
+| MNO123 | BMW        | 323       |      2001 |  60000 |     5 |
+| PQR123 | Ford       | Mondeo    |      2001 |  90000 |     4 |
+| STU123 | Volvo      | 740       |      1987 |  35000 |     5 |
+| VYX123 | Volkswagen | Golf      |      1983 |  40000 |     5 |
+| ABC456 | Volkswagen | Polo      |      2003 |  75000 |     1 |
+| DEF456 | Toyota     | Carina II |      1998 |  30000 |     2 |
++--------+------------+-----------+-----------+--------+-------+
+
++--------+------------+-----------+-----------+----+--------+-------+
+| reg    | marke      | modell    | arsmodell | id | pris   | agare |
++--------+------------+-----------+-----------+----+--------+-------+
+| ABC123 | Saab       | 9-5       |      2003 |  1 | 130000 |     1 |
+| DEF123 | Volvo      | S80       |      2002 |  2 | 140000 |     2 |
+| GHI123 | Mazda      | 626       |      2001 |  3 |  80000 |     3 |
+| JKL123 | Audi       | A8        |      2001 |  4 | 150000 |     5 |
+| MNO123 | BMW        | 323       |      1998 |  5 |  60000 |     5 |
+| PQR123 | Ford       | Mondeo    |      2001 |  6 |  90000 |     4 |
+| STU123 | Volvo      | 740       |      1987 |  7 |  35000 |     5 |
+| VYX123 | Volkswagen | Golf      |      1988 |  8 |  40000 |     5 |
+| ABC456 | Volkswagen | Polo      |      2003 |  9 |  75000 |     1 |
+| DEF456 | Toyota     | Carina II |      1998 | 10 |  30000 |     2 |
++--------+------------+-----------+-----------+----+--------+-------+
+
++----+-----------+-------+
+| id | fnamn     | enamn |
++----+-----------+-------+
+|  1 | Kalle     | Anka  |
+|  2 | Kajsa     | Anka  |
+|  3 | Knatte    | Anka  |
+|  4 | Tjatte    | Anka  |
+|  5 | Fnatte    | Anka  |
+|  6 | Knase     | Anka  |
+|  7 | Alexander | Lukas |
++----+-----------+-------+
+
++----+-----------+-------+
+| id | fnamn     | enamn |
++----+-----------+-------+
+|  1 | Kalle     | Anka  |
+|  2 | Kajsa     | Anka  |
+|  3 | Knatte    | Anka  |
+|  4 | Tjatte    | Anka  |
+|  5 | Fnatte    | Anka  |
+|  6 | Knase     | Anka  |
+|  7 | Alexander | Lukas |
++----+-----------+-------+
+
+Relationer mellan tabeller
+
+Uppgift 1: SELECT bilar.reg, bilar.marke, personer.fnamn, personer.enamn FROM bilar LEFT OUTER JOIN personer ON bilar.agare=personer.id;
+
+Uppgift 2: SELECT personer.fnamn, personer.enamn, bilar.reg, bilar.marke FROM personer LEFT OUTER JOIN bilar ON personer.id=bilar.agare ORDER BY enamn, fnamn;
+
+Uppgift 3: SELECT personer.fnamn, personer.enamn FROM personer INNER JOIN bilar ON personer.id=bilar.agare AND bilar.marke="Saab";
+
+Uppgift 4: SELECT personer.fnamn, personer.enamn, COUNT(*) FROM personer INNER JOIN bilar ON bilar.agare=personer.id GROUP BY bilar.agare;
+
++----+-----------+-------+--------------+
+| id | fnamn     | enamn | fodelsedatum |
++----+-----------+-------+--------------+
+|  1 | Kalle     | Anka  | 1934-07-09   |
+|  2 | Kajsa     | Anka  | 1937-09-01   |
+|  3 | Knatte    | Anka  | 1937-10-17   |
+|  4 | Fnatte    | Anka  | 1937-10-17   |
+|  5 | Tjatte    | Anka  | 1937-10-17   |
+|  6 | Knase     | Anka  | 1964-08-02   |
+|  7 | Alexander | Lukas | 1948-01-01   |
++----+-----------+-------+--------------+
+
+MariaDB [labb]> SELECT TO_DAYS("2004-06-26") – TO_DAYS(CURDATE());
++--------------------------------------------+
+| TO_DAYS("2004-06-26") - TO_DAYS(CURDATE()) |
++--------------------------------------------+
+|                                        107 |
++--------------------------------------------+
+1 row in set (0.00 sec)
+
+Inbyggda funktioner
+
+Uppgift 1: SELECT TO_DAYS("2020-12-24") - TO_DAYS(CURDATE());
+
+Uppgift 2: SELECT TO_DAYS(CURDATE()) - TO_DAYS("2002-05-20");
+
+Uppgift 3: SELECT CONCAT(fnamn, " ", enamn) AS Person FROM personer;
+
+Uppgift 4: SELECT CONCAT(fnamn, " ", enamn) AS Oktober FROM personer WHERE MONTH(fodelsedatum)=10;
+
+Uppgift 5: SELECT CONCAT(fnamn, " ", enamn, " har en ", marke, " ", modell) AS Biltabell FROM personer INNER JOIN bilar ON bilar.agare=personer.id;
+
+Uppgift 6: SELECT CONCAT(enamn, ", ", fnamn) AS Agare, Concat(marke, " ", modell) AS Bilmodell, YEAR(CURDATE()) - arsmodell AS Alder FROM personer INNER JOIN bilar ON bilar.agare=personer.id ORDER BY enamn, fnamn;
+
++--------------+------------------+-------+
+| Ägare        | Bilmodell        | Ålder |
++--------------+------------------+-------+
+| Anka, Fnatte | Ford Mondeo      |     3 |
+| Anka, Kajsa  | Toyota Carina II |     6 |
+| Anka, Kajsa  | Volvo S80        |     2 |
+| Anka, Kalle  | Volkswagen Polo  |     1 |
+| Anka, Kalle  | Saab 9-5         |     1 |
+| Anka, Knatte | Mazda 626        |     3 |
+| Anka, Tjatte | BMW 323          |     3 |
+| Anka, Tjatte | Audi A8          |     3 |
+| Anka, Tjatte | Volkswagen Golf  |    21 |
+| Anka, Tjatte | Volvo 740        |    17 |
++--------------+------------------+-------+
++--------------+------------------+-------+
+| Agare        | Bilmodell        | Alder |
++--------------+------------------+-------+
+| Anka, Fnatte | BMW 323          |    22 |
+| Anka, Fnatte | Audi A8          |    19 |
+| Anka, Fnatte | Volkswagen Golf  |    32 |
+| Anka, Fnatte | Volvo 740        |    33 |
+| Anka, Kajsa  | Toyota Carina II |    22 |
+| Anka, Kajsa  | Volvo S80        |    18 |
+| Anka, Kalle  | Saab 9-5         |    17 |
+| Anka, Kalle  | Volkswagen Polo  |    17 |
+| Anka, Knatte | Mazda 626        |    19 |
+| Anka, Tjatte | Ford Mondeo      |    19 |
++--------------+------------------+-------+
+
+Uppgift 1: SELECT * FROM personer WHERE fnamn="knatte";
+
+Uppgift 2: MariaDB [gunnar]> SELECT reg, marke, modell FROM bilar WHERE reg LIKE "A%";
+
+Uppgift 3: SELECT reg, marke, modell FROM bilar WHERE reg LIKE "A%1%";
+
+Uppgift 4: SELECT COUNT(reg) AS "Antal bilar med reg som startar med A" FROM bilar WHERE reg LIKE "A%";
+
+Uppgift 5: SELECT personer.fnamn AS "Fornamn pa K och slutar pa E", personer.enamn AS "Efternamn som borjar pa A", bilar.reg AS Registrering FROM bilar INNER JOIN personer WHERE bilar.reg LIKE "A%1%" AND personer.fnamn LIKE "K%e"
+AND personer.enamn LIKE "A%";
+
+Uppgift 6: SELECT fnamn FROM personer WHERE enamn LIKE "%\_%";
+
+Uppgift 7: SELECT fnamn, enamn FROM personer WHERE fnamn LIKE "_%A%_" OR enamn LIKE "_%A%_";
