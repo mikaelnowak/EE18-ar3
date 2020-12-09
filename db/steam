@@ -1,0 +1,1 @@
+CREATE TABLE steam (id int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY, name varchar(200), genre varchar(200), release_date date, dev varchar(200), publisher varchar(200), play_time int(10));

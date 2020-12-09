@@ -1,0 +1,39 @@
+body {
+    background: #202225;
+    color: #EDECEF;
+}
+.select {
+    background: #2F3136;
+    width: 800px;
+    margin: 50px auto 0 auto;
+    border-radius: 20px;
+}
+h1 {
+    font-size: 50px;
+    margin: 0 auto;
+    padding: 70px;
+}
+.users {
+    display: grid;
+    background: #2F3136;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+a {
+    text-decoration: none;
+    color: #DCDBDE;
+}
+.user {
+    background: #2F3136;
+    width: 200px;
+    margin: auto;
+    padding: 20px;
+    border-radius: 20px;
+}
+h2 {
+    margin: auto;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+.min-con {
+    width: max-content;
+}

@@ -1,12 +1,4 @@
 <?php
-/*
-enkel blogg med databas
-* PHP version 7
-* @category   Webb med databas
-* @author     Mikael Nowak <mikael.nowak@elev.ga.ntig.se>
-* @license    PHP CC
-*/
-//Hämta kod från en annan fil
 include "./resurser/conn.php";
 ?>
 <!DOCTYPE html>
@@ -14,26 +6,36 @@ include "./resurser/conn.php";
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title></title>
+    <title>Blogg</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="kontainer">
-    <h1>Spara ditt namn</h1>
+    <h1>Spara ditt inlägg</h1>
+    <nav>
+        <ul class="nav nav-tabs">
+            <li class="nav-item"><a class="nav-link" href="./lista.php">Läsa</a></li>
+            <li class="nav-item"><a class="nav-link active" href="./skriva.php">Skriva</a></li>
+            <li class="nav-item"><a class="nav-link" href="./hitta.php">Sök</a></li>
+            <li class="nav-item"><a class="nav-link" href="./admin.php">Admin</a></li>
+        </ul>
+    </nav>
     <form action="#" method="POST">
-        <label>Ange rubrik<input type="text" name="header"></label>
-        <label>Ange text <textarea name="postText"></textarea></label>
+        <label>Ange rubrik<input type="text" name="title"></label>
+        <label>Ange text <textarea name="content"></textarea></label>
         <button>Spara</button>
     </form>
     <?php
-    $header = filter_input(INPUT_POST, 'header', FILTER_SANITIZE_STRING);
-    $postText = filter_input(INPUT_POST, 'postText', FILTER_SANITIZE_STRING);
+    $title = filter_input(INPUT_POST, 'title', FILTER_SANITIZE_STRING);
+    $content = filter_input(INPUT_POST, 'content', FILTER_SANITIZE_STRING);
 
     // Finns data?
-    if ($header && $postText) {
-        //var_dump($header, $postText);
-        $sql = "INSERT INTO bloggen (id, header, postText, postDate) VALUES (NULL, '$header', '$postText', CURRENT_TIMESTAMP)";
+    if ($title && $content) {
+        //var_dump($title, $content);
+        $sql = "INSERT INTO blogg (title, content) VALUES ('$title', '$content')";
         $result = $conn->query($sql);
+        
         if (!$result) {
             die('Error');
         } else {
