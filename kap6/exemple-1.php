@@ -33,7 +33,7 @@
         $antal = strlen($stycke);
         echo "<p>Antal tecken = $antal</p>";
 
-        $epost = "mikaelnowak10@gmail.com";
+        /* $epost = "mikaelnowak10@gmail.com";
         $för = substr($epost, 0, 6);
         echo "<p>$för</p>";
         $efter = substr($epost, 6, 5);
@@ -59,7 +59,7 @@
         $texten = "asdaf rv vds f sfw ge h sdfs as";
         $nyText = str_replace("rv", "hej", $texten);
         echo "<p>$nyText</p>";
-        
+         */
 
         ?>
     </div>

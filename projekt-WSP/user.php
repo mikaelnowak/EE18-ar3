@@ -13,18 +13,21 @@
             <h1 class="max-con">SELECT USER</h1>
             <div class="users">
             <?php
-            //Vissa alla användare i en grid
-            $users = $conn->query('SELECT * FROM users');
-            //var_dump($users);
-            foreach ($users as $user) {
-                echo "<a href=\"chatroom.php?id=$user[id]\">
-                        <div class=\"user\"style=\"
-                        border:5px solid $user[color];
-                        box-shadow: 0 0 5px $user[color];\">
-                            <h2 class=\"max-con\">$user[name]</h2>
-                        </div>
-                    </a>";
-            }
+                //Vissa alla användare i en grid
+                #var_dump($users);
+                foreach ($selectFromUser as $user) {
+                    echo "<a href=\"chatroom.php?user_name=$user[name]\">
+                            <div class=\"user\"style=\"
+                            border:5px solid $user[color];
+                            box-shadow: 0 0 5px $user[color];\">
+                                <h2 class=\"max-con\">$user[name]</h2>
+                            </div>
+                        </a>";
+                }
+
+                //Stäng ner databas anslutningen
+                $conn->close();
+                
             ?>
             </div>
             <hr>
@@ -35,7 +38,7 @@
                         <h2 class="max-con">ADD USERS</h2>
                     </div>
                 </a>
-                <a href="remove.php">
+                <a href="manage.php">
                     <div class="manage-part">
                         <h2 class="max-con">MANAGE USERS</h2>
                     </div>

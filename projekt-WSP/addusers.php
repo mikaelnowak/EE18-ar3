@@ -1,4 +1,5 @@
-<?php include "./resurser/conn.php"; ?>
+<?php include "./resurser/conn.php";
+include "./cssColorNames.php";?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,15 +10,13 @@
 </head>
 <body>
     <div class="container">
-        <div class="content small">
+        <div class="content small-content">
             <h1 class="max-con">Add User</h1>
             <form action="#" method="POST">
-                <label>User name:</label>
-                <input type="text" name="user-name" required>
+                <label>User name:<input type="text" name="user-name" autocomplete="off" required></label>
                 <p class="description">No 2 users with the same name. Ex no two "Gumpe".</p>
-                <label>User color:</label>
-                <input type="text" name="user-color" required>
-                <p class="description">Write the color of choice's hex code counterpart "Ex: #f0f or #F0ecB12"</p>
+                <label>User color:<input type="text" name="user-color" autocomplete="off" required></label>
+                <p class="description">Write the name of the color or the color's hex code counterpart "Ex: #f0f or #F0ecB12"</p>
                 <button type="submit">Add user</button>
             </form>
             <?php
@@ -25,32 +24,39 @@
                 $userName = filter_input(INPUT_POST, 'user-name', FILTER_SANITIZE_STRING);
                 $userColor = filter_input(INPUT_POST, 'user-color', FILTER_SANITIZE_STRING);
 
-                //Variablar
-                $errorMessage = "";
-
                 if ($userName && $userColor) {
-                    //Kontrolera om namnet e unik
-                    $userNamesInDB = $conn->query('SELECT name FROM users');
-                    //var_dump($userNamesInDB);
-                    foreach ($userNamesInDB as $name) {
-                        if ($name[name] == $userName) {
-                            $userName = "";
-                            $errorMessage += "<p>There is allready a user named $userName, please get another username and try again</p>";
+                    //Globala variablar
+                    $errorMessage;
+
+                    //Är strängen 16 eller mindre karaktärer lång
+                    if (strlen($userName) <= 16) {
+                        //Är namnet unik?
+                        foreach ($selectFromUser as $user) {
+                            //Om namnet inte är unik
+                            if ($user[name] == $userName) {
+                                $userName = '';
+                                $errorMessage[0] = "<p>There is allready a user named $userName, please get another username and try again</p>";
+                            }
+                        }
+                    } else {
+                        $userName = '';
+                        $errorMessage[0] = "<p>The longest accepteble user name is 16 caracters or less, pleast shorten your username and try again.</p>";
+                    }
+
+                    if (!preg_match('/^#([a-f0-9]{6}|[a-f0-9]{3})\b$/i', $userColor)) {
+                        //Kolla om man skrev in färgens namn
+                        if (!in_array($userColor, $colorNames)) {
+                            $userColor = '';
+                            $errorMessage[1] = "<p>The text you typed in dont follow the color guidlines we have. Write the color's name or its hex code and try again.</p>";
                         }
                     }
 
-                    //Kolla om man skriver in en färg namn eller hexkod för färg
-                    if (!preg_match('/^#([a-f0-9]{6}|[a-f0-9]{3})\b$/i', $userColor)) {
-                        $userColor = "";
-                        $errorMessage += "<p>The text you typed in dont follow the hex color rule, it a combination of red, green and blue color values. Search for an explenation and come back to type the correct color hex code.</p>";
-                    }
-
                     //Om allt stämmer
-                    if ($userName != "" && $userColor != "") {
-                        $newUser = "INSERT INTO users (name, color) VALUES ('$userName', '$userColor')";
-                        $check = $conn->query($newUser);
+                    if ($userName != '' && $userColor != '') {
+                        $check = $conn->query("INSERT INTO users (name, color) VALUES ('$userName', '$userColor')");
+
                         if (!$check) {
-                            echo "<p>There was an error when creating the user. Please come back later efter the bug is fixed.</p>
+                            echo "<p>There was an error when creating the user. Please come back later.</p>
                             <p>Error message: $conn->connect_error</p>";
                         } else {
                             echo "<div class=\"success\">
@@ -58,10 +64,18 @@
                                 </div>";
                         }
                     } else {
-                        echo "hej";
+                        echo "<div class=\"error-message\">
+                                $errorMessage[0]
+                                $errorMessage[1]
+                            </div>";
                     }
                 }
+
+                //Stäng ner databas anslutningen
+                $conn->close();
+
             ?>
+            <a href="user.php"><button>Previous page</button></a>
         </div>
     </div>
 </body>

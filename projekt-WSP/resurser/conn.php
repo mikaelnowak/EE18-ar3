@@ -15,3 +15,6 @@ $conn = new mysqli($host, $user, $pass, $db);
 } else {
     echo "succes";
 } */
+
+//Ta ut alla namn ur tabellen 'users'
+$selectFromUser = $conn->query('SELECT * FROM users');

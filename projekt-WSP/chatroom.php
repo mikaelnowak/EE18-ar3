@@ -11,16 +11,20 @@
     <div class="container">
         <div class="chatrooms">
         <?php
-        //Vissa alla chatter som finns
-        $tables = $conn->query("SHOW TABLES");
-        //var_dump($tables);
-        foreach ($tables as $key => $table) {
-            $name[$key] = $table['Tables_in_fake_discord'];
-            //var_dump($name[$key]);
-            if ($name[$key] != 'users') {
-                echo "$name[$key]";
+            //Vissa alla chatter som finns
+            $tables = $conn->query("SHOW TABLES");
+            #var_dump($tables);
+            foreach ($tables as $key => $table) {
+                $name[$key] = $table['Tables_in_fake_discord'];
+                #var_dump($name[$key]);
+                if ($name[$key] != 'users') {
+                    echo "$name[$key]";
+                }
             }
-        }
+
+            //Stäng ner databas anslutningen
+            $conn->close();
+            
         ?>
         </div>
     </div>
