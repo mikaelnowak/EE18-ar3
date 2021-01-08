@@ -55,8 +55,13 @@ input {
 .users {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
+    column-gap: 15px;
     row-gap: 15px;
     margin: 0 25px 25px 25px;
+}
+.vertical-menu {
+    max-height: 500px;
+    overflow-y: auto;
 }
 a {
     text-decoration: none;
@@ -96,6 +101,15 @@ hr {
     border-radius: 20px;
     box-shadow: 0 0 5px #000;
 }
+button {
+    display: block;
+    background: #36393F;
+    color: #DCDBDE;
+    margin: 0 auto;
+    padding: 10px 30px;
+    border: 5px solid #000;
+    border-radius: 15px;
+}
 
 /* ********************************** */
 /* ******* Styla addusers.php ******* */
@@ -105,15 +119,6 @@ hr {
     font-size: 12px;
     color: #A9A8AB;
     margin: 0 0 10px 0;
-}
-button {
-    display: block;
-    background: #36393F;
-    color: #DCDBDE;
-    margin: 0 auto;
-    padding: 10px 30px;
-    border: 5px solid #000;
-    border-radius: 15px;
 }
 
 /* ********************************** */
@@ -137,4 +142,58 @@ button {
 }
 .small-hr {
     width: 390px;
+}
+
+/* ********************************** */
+/* ******* Styla chatroom.php ******* */
+/* ********************************** */
+.container {
+    display: grid;
+    background: #36393F;
+    width: 1000px;
+    height: 700px;
+    border: 3px solid #000;
+    border-radius: 10px;
+    margin: auto 50px auto 0;
+    grid-template-columns: 1fr 4fr;
+}
+.rooms {
+    background: #2F3136;
+    padding: 10px;
+    border-top-left-radius: 10px;
+}
+.rooms form {
+    width: auto;
+    margin: 0;
+}
+.rooms input {
+    margin: 10px 0;
+}
+.rooms button {
+    width: 100%;
+    padding: 5px 0;
+}
+.container hr {
+    width: 150px;
+}
+.rooms .all-rooms {
+    
+} 
+.rooms .room {
+    padding: 2px;
+}
+.chatrooms {
+    display: block;
+}
+.account {
+    background: #2F3136;
+    padding: 10px;
+    border-bottom-left-radius: 10px;
+}
+.account a button {
+    padding: 10px;
+    margin: 0;
+}
+.view-chat {
+    height: 635px;
 }
