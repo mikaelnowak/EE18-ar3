@@ -14,9 +14,10 @@
             <div class="users">
             <?php
                 //Vissa alla användare i en grid
-                #var_dump($users);
+                #var_dump($selectFromUser);
                 foreach ($selectFromUser as $user) {
-                    echo "<a href=\"chatroom.php?user_name=$user[name]\">
+                    #var_dump($user);
+                    echo "<a href=\"chatroom1.php?userName=$user[name]\">
                             <div class=\"user\"style=\"
                             border:5px solid $user[color];
                             box-shadow: 0 0 5px $user[color];\">

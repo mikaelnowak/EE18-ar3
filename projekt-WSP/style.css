@@ -176,24 +176,71 @@ button {
 .container hr {
     width: 150px;
 }
-.rooms .all-rooms {
-    
-} 
 .rooms .room {
-    padding: 2px;
+    padding: 5px;
+    margin: 5px 0;
+}
+.rooms .on {
+    background: #393C43;
+    border-radius: 5px;
 }
 .chatrooms {
     display: block;
 }
-.account {
+.view-chat {
+    height: 635px;
+    max-height: 635px;
+    overflow-y: auto;
+}
+.view-chat .show-message {
+    padding: 15px;
+}
+.view-chat .show-message:hover {
+    background: #32353B;
+}
+.view-chat .show-message h2, h6 {
+    display: inline-block;
+    color: gray;
+    margin: 0;
+}
+.view-chat .show-message p {
+    color: #DCDDDE;
+    margin: 10px 0 0 0;
+}
+.go-back {
     background: #2F3136;
     padding: 10px;
     border-bottom-left-radius: 10px;
 }
-.account a button {
+.go-back a button {
+    display: block;
+    width: 100%;
     padding: 10px;
+    margin: auto;
     margin: 0;
 }
-.view-chat {
-    height: 635px;
+.input-message {
+    width: 90%;
+    margin: auto;
+}
+.input-message form {
+    width: 100%
+}
+.input-message form input {
+    display: inline-block;
+    background: #40444B;
+    font-size: 15px;
+    width: 90%;
+    height: 35px;
+    padding: 0 5px;
+    border-radius: 10px;
+    margin: auto;
+    border: none;
+}
+.input-message form button {
+    display: inline-block;
+    background: #40444B;
+    width: 50px;
+    padding: 10px;
+    border: none;
 }

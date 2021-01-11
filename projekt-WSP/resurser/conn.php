@@ -10,11 +10,9 @@ $pass = "pCAFdhIzpWqRpobK";
 $conn = new mysqli($host, $user, $pass, $db);
 
 //Kontrollera om man är ansluten
-/* if ($conn->connect_error) {
+if ($conn->connect_error) {
     die('Ended:' . $conn->error);
-} else {
-    echo "succes";
-} */
+}
 
 //Ta ut alla namn ur tabellen 'users'
 $selectFromUser = $conn->query('SELECT * FROM users');
