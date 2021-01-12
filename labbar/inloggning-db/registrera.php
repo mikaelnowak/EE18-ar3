@@ -13,6 +13,14 @@
         <header>
             <h1>Inloggning</h1>
         </header>
+        <nav>
+            <ul class="nav nav-tabs">
+                <li class="nav-item"><a class="nav-link active" href="./registrera.php">registrera</a></li>
+                <li class="nav-item"><a class="nav-link" href="./login.php">login</a></li>
+                <li class="nav-item"><a class="nav-link" href="./lista.php">lista</a></li>
+                <li class="nav-item"><a class="nav-link" href="./logout.php">logout</a></li>
+            </ul>
+        </nav>
         <main>
             <form action="#" method="post">
                 <label>Förnamn <input type="text" name="fnamn" required></label>
@@ -30,20 +38,28 @@
                 $lösen2 = filter_input(INPUT_POST, "lösen2", FILTER_SANITIZE_STRING);
 
                 if ($fnamn && $enamn && $anamn && $lösen1 && $lösen2) {
-                    if ($lösen1 == $lösen2) {
-                        #var_dump($fnamn, $enamn, $anamn, $lösen1);
 
-                        $hash = password_hash($lösen1, PASSWORD_DEFAULT);
+                    $sql = "SELECT * FROM user WHERE anamn = '$anamn'";
+                    $result = $conn->query($sql);
 
-                        $sql = "INSERT INTO user (fnamn, enamn, anamn, hash) VALUES ('$fnamn', '$enamn', '$fnamn', '$hash')";
-                        
-                        $conn->query($sql);
-
-                        echo "<p class=\"alert alert-success\">Registrerad</p>";
-
-                        $conn->close();
+                    if ($result->num_rows != 0) {
+                        echo "<p class=\"alert alert-warning\">Användarnamnet är taget, mata in en ny användarnamn</p>";
                     } else {
-                        echo "<p>Lösenorden matchar inte</p>";
+                        if ($lösen1 == $lösen2) {
+                            #var_dump($fnamn, $enamn, $anamn, $lösen1);
+
+                            $hash = password_hash($lösen1, PASSWORD_DEFAULT);
+    
+                            $sql = "INSERT INTO user (fnamn, enamn, anamn, hash) VALUES ('$fnamn', '$enamn', '$anamn', '$hash')";
+                            
+                            $conn->query($sql);
+    
+                            echo "<p class=\"alert alert-success\">Registrerad</p>";
+    
+                            $conn->close();
+                        } else {
+                            echo "<p class=\"alert alert-warning\">Lösenorden matchar inte</p>";
+                        }
                     }
                 }
             ?>
