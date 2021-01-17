@@ -18,10 +18,16 @@ session_start();
         </header>
         <nav>
             <ul class="nav nav-tabs">
-                <li class="nav-item"><a class="nav-link" href="./registrera.php">registrera</a></li>
+                <?php if (!isset($_SESSION["anamn"])) { ?>
                 <li class="nav-item"><a class="nav-link active" href="./login.php">login</a></li>
-                <li class="nav-item"><a class="nav-link" href="./lista.php">lista</a></li>
+                <li class="nav-item"><a class="nav-link" href="./registrera.php">registrera</a></li>
+                <?php } else { ?>   
                 <li class="nav-item"><a class="nav-link" href="./logout.php">logout</a></li>
+                <li class="nav-item"><a class="nav-link" href="./lista.php">lista</a></li>
+                <li class="nav-item"><a class="nav-link" href="./skriva.php">Skriv inlägg</a></li>
+                <?php } ?>
+                <li class="nav-item"><a class="nav-link" href="./lista-blogg.php">Inlägg</a></li>
+                <li class="nav-item"><a class="nav-link" href="./hitta.php">Sök</a></li>
             </ul>
         </nav>
         <main>
@@ -50,7 +56,17 @@ session_start();
                         if (password_verify($lösen, $hash)) {
                             //inloggad
                             echo "<p class=\"alert alert-success\">Inloggad</p>";
+
                             $_SESSION["anamn"] = $anamn;
+
+                            $antal = $rad['antal'] + 1;
+
+                            $_SESSION["antal"] = $antal;
+
+                            $sql = "UPDATE user SET antal = '$antal' WHERE id = $rad[id]";
+                            $conn->query($sql);
+
+                            header("Location: ./lista.php");
                         } else {
                             //error
                             echo "<p class=\"alert alert-warning\">Lösenorder stämmer inte</p>";

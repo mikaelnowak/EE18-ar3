@@ -13,17 +13,17 @@ session_start();
 <body>
     <div class="container">
         <div class="rooms">
-        <div class="room on">Chatroom 1</div>
+        <a href="./chatroom1.php"><div class="room">Chatroom 1</div></a>
         <a href="./chatroom2.php"><div class="room">Chatroom 2</div></a>
-        <a href="./chatroom3.php"><div class="room">Chatroom 3</div></a>
+        <div class="room on">Chatroom 3</div>
         </div>
         <div class="view-chat">
             <?php
                 //Plocka ut användbar information
-                $selectFromChatroom1 = $conn->query("SELECT user_name, color, content, postdate FROM users RIGHT OUTER JOIN chatroom1 ON chatroom1.user_id=users.id ORDER BY postdate DESC");
-                #var_dump($selectFromChatroom1);
+                $selectFromChatroom3 = $conn->query("SELECT user_name, color, content, postdate FROM users RIGHT OUTER JOIN chatroom3 ON chatroom3.user_id=users.id ORDER BY postdate DESC");
+                #var_dump($selectFromChatroom3);
                 //Skriv ut alla medelanden som finns i chatens daatabas
-                while ($message = $selectFromChatroom1->fetch_assoc()) {
+                while ($message = $selectFromChatroom3->fetch_assoc()) {
                     #var_dump($rad);
                     //Om användaren är borttagen
                     if ($message[user_name] == '') {
@@ -50,11 +50,11 @@ session_start();
                 $newMessage = filter_input(INPUT_POST, 'new-message', FILTER_SANITIZE_STRING);
 
                 if ($newMessage) {
-                    //Plocka ut användbar information
-                    $check = $conn->query("INSERT INTO chatroom1 (user_id, content) VALUES ($_SESSION[userId], '$newMessage')");
+                    //Skicka in medelandet
+                    $check = $conn->query("INSERT INTO chatroom3 (user_id, content) VALUES ($_SESSION[userId], '$newMessage')");
 
                     if (!$check) {
-                        //Skicka in medelandet
+                        //Om medelandet inte blev sparad
                         echo "<p class=\"error-message\">There was an error when saving the message. Please come back later. Error message: $conn->connect_error</p>";
                     }
                 }

@@ -29,6 +29,9 @@ body {
 nav {
     padding: 1em 0;
 }
+nav .anamn {
+    margin-left: auto;
+}
 main {
     padding: 1em;
     font-size: 0.9em;
@@ -105,9 +108,9 @@ th {
 tr:nth-child(even) {
     background: #f1f1f1;
 }
-/* tr:nth-child(odd) {
+tr:nth-child(odd) {
     background: #FFF;
-} */
+}
 table .fa {
     color: #55a5d2;
 }

@@ -1,5 +1,6 @@
 <?php
 include "./resurser/conn.php";
+session_start();
 ?>
 <!DOCTYPE html>
 <html lang="sv">
@@ -8,17 +9,23 @@ include "./resurser/conn.php";
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Blogg</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="./style.css">
 </head>
 <body>
     <div class="kontainer">
     <h1>Spara ditt inlägg</h1>
     <nav>
         <ul class="nav nav-tabs">
-            <li class="nav-item"><a class="nav-link" href="./lista.php">Läsa</a></li>
-            <li class="nav-item"><a class="nav-link active" href="./skriva.php">Skriva</a></li>
+            <?php if (!isset($_SESSION["anamn"])) { ?>
+            <li class="nav-item"><a class="nav-link" href="./login.php">login</a></li>
+            <li class="nav-item"><a class="nav-link" href="./registrera.php">registrera</a></li>
+            <?php } else { ?>   
+            <li class="nav-item"><a class="nav-link" href="./logout.php">logout</a></li>
+            <li class="nav-item"><a class="nav-link" href="./lista.php">lista</a></li>
+            <li class="nav-item"><a class="nav-link active" href="./skriva.php">Skriv inlägg</a></li>
+            <?php } ?>
+            <li class="nav-item"><a class="nav-link" href="./lista-blogg.php">Inlägg</a></li>
             <li class="nav-item"><a class="nav-link" href="./hitta.php">Sök</a></li>
-            <li class="nav-item"><a class="nav-link" href="./admin.php">Admin</a></li>
         </ul>
     </nav>
     <form action="#" method="POST">

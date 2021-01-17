@@ -1,4 +1,7 @@
-<?php include "./resurser/conn.php"; ?>
+<?php
+include "./resurser/conn.php";
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,28 +12,50 @@
 </head>
 <body>
     <div class="content">
-        <h1 class="max-con">SELECT USER</h1>
-        <div class="vertical-menu">
-            <div class="users">
+        <h1 class="max-con">LOGIN</h1>
+        <div class="login">
+            <form action="#" method="POST">
+                <label>User name: </label>
+                <input type="text" name="user-name" autocomplete="off" require>
+                <label>Password: </label>
+                <input type="password" name="user-password" autocomplete="off" require>
+                <button>Login</button>
+            </form>
             <?php
-                //Vissa alla användare i en grid
-                #var_dump($selectFromUser);
-                foreach ($selectFromUser as $user) {
-                    #var_dump($user);
-                    echo "<a href=\"chatroom1.php?userName=$user[name]\">
-                            <div class=\"user\"style=\"
-                            border:5px solid $user[color];
-                            box-shadow: 0 0 5px $user[color];\">
-                                <h2 class=\"max-con\">$user[name]</h2>
-                            </div>
-                        </a>";
-                }
+                $userName = filter_input(INPUT_POST, 'user-name', FILTER_SANITIZE_STRING);
+                $pass = filter_input(INPUT_POST, 'user-password', FILTER_SANITIZE_STRING);
+                #var_dump($userName, $pass);
 
-                //Stäng ner databas anslutningen
-                $conn->close();
-                
+                //Om man har skrivit in användarnamn och lösenord
+                if ($userName && $pass) {
+                    $selectUserData = $conn->query("SELECT id, user_name, hash FROM users WHERE user_name='$userName'");
+                    #var_dump($selectUserData);
+                    //Finns användaren i databasen?
+                    if ($selectUserData->num_rows != 0) {
+                        //Användaren finns
+                        $row = $selectUserData->fetch_assoc();
+                        #var_dump($row);
+                        //Kolla om hashen matchar lösenordet
+                        if (password_verify($pass, $row[hash])) {
+                            //inloggad
+                            $_SESSION['userId'] = $row[id];
+                            #var_dump($row[id]);
+                            
+                            //Gå över till chatrum
+                            header('Location: ./chatroom1.php');
+                        } else {
+                            //Lösenordet matchar inte
+                            echo "<p class=\"error-message\">The password dont mach.</p>";
+                        }
+                    } else {
+                        //Användaren finns inte
+                        echo "<p class=\"error-message\">There is no user with the username \"$userName\"</p>";
+                    }
+                } else {
+                    //Om man missar
+                    echo "<p class=\"error-message\">There is no user with the username \"$userName\"</p>";
+                }
             ?>
-            </div>
         </div>
         <hr>
         <h1 class="max-con">MANAGE</h1>

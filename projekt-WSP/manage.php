@@ -19,7 +19,7 @@ include "./resurser/cssColorNames.php"; ?>
                         //Skriv ut alla användare i "users" tabellen
                         foreach ($selectFromUser as $user) {
                             #var_dump($user);
-                            echo "<option value=\"$user[id]\">$user[name]</option>";
+                            echo "<option value=\"$user[id]\">$user[user_name]</option>";
                         }
                     ?>
                 </select>
@@ -41,28 +41,33 @@ include "./resurser/cssColorNames.php"; ?>
                         //Är namnet unik?
                         foreach ($selectFromUser as $user) {
                             //Om namnet inte är unik
-                            if ($user[name] == $changeName) {
+                            if ($user[user_name] == $changeName) {
                                 $changeName = '';
                                 $errorMessage[0] = "<p>There is allready a user named $changeName, please get another username and try again</p>";
                             }
                         }
                     } else {
+                        //Om namnet är över 16 karaktärer
                         $changeName = '';
                         $errorMessage[0] = "<p>The longest accepteble user name is 16 caracters or less, pleast shorten your username and try again.</p>";
                     }
                 
                     if ($changeName != '') {
-                        $checkRename = $conn->query("UPDATE users SET name=\"$changeName\" WHERE id=$selectUser");
+                        //Skicka in medelandet
+                        $checkRename = $conn->query("UPDATE users SET user_name=\"$changeName\" WHERE id=$selectUser");
 
                         if (!$checkRename) {
+                            //Om ändringen inte skickades in
                             echo "<p>There was an error when renaming the user. Please come back later.</p>
                             <p>Error message: $conn->connect_error</p>";
                         } else {
+                            //Om ändringen skickades in
                             echo "<div class=\"success\">
                                     <p>Succes, your user have succesfully ben renamed to $changeName</p>
                                 </div>";
                         }
                     } else {
+                        //Felmedelande
                         echo "<div class=\"error-message\">
                                 $errorMessage[0]
                             </div>";
@@ -80,7 +85,7 @@ include "./resurser/cssColorNames.php"; ?>
                         //Skriv ut alla användare i "users" tabellen
                         foreach ($selectFromUser as $user) {
                             #var_dump($user);
-                            echo "<option value=\"$user[id]\">$user[name]</option>";
+                            echo "<option value=\"$user[id]\">$user[user_name]</option>";
                         }
                     ?>
                 </select>
@@ -108,14 +113,17 @@ include "./resurser/cssColorNames.php"; ?>
                         $checkRecolor = $conn->query("UPDATE users SET color=\"$changeColor\" WHERE id=$selectUser");
 
                         if (!$checkRecolor) {
+                            //Om ändringen inte skickades in
                             echo "<p>There was an error when recoloring the user. Please come back later.</p>
                             <p>Error message: $conn->connect_error</p>";
                         } else {
+                            //Om ändringen skickades in
                             echo "<div class=\"success\">
                                     <p>Succes, your user have gotten a new color.</p>
                                 </div>";
                         }
                     } else {
+                        //Felmedelande
                         echo "<div class=\"error-message\">
                                 $errorMessage[1]
                             </div>";
@@ -133,7 +141,7 @@ include "./resurser/cssColorNames.php"; ?>
                         //Skriv ut alla användare i "users" tabellen
                         foreach ($selectFromUser as $user) {
                             #var_dump($user);
-                            echo "<option value=\"$user[id]\">$user[name]</option>";
+                            echo "<option value=\"$user[id]\">$user[user_name]</option>";
                         }
                     ?>
                 </select>
@@ -148,9 +156,11 @@ include "./resurser/cssColorNames.php"; ?>
                     $checkDelete = $conn->query("DELETE FROM users WHERE id=$deleteUser");
 
                     if (!$checkDelete) {
+                        //Om användaren inte togs bort
                         echo "<p>There was an error when deleting the user. Please come back later.</p>
                         <p>Error message: $conn->connect_error</p>";
                     } else {
+                        //Om Användaren togs bort
                         echo "<div class=\"success\">
                                 <p>Succes, your user have gotten deleted.</p>
                             </div>";
