@@ -28,13 +28,16 @@ session_start();
                 <?php if (!isset($_SESSION["anamn"])) { ?>
                 <li class="nav-item"><a class="nav-link" href="./login.php">login</a></li>
                 <li class="nav-item"><a class="nav-link" href="./registrera.php">registrera</a></li>
+                <li class="nav-item"><a class="nav-link active" href="./lista-blogg.php">Inlägg</a></li>
+                <li class="nav-item"><a class="nav-link" href="./hitta.php">Sök</a></li>
                 <?php } else { ?>   
                 <li class="nav-item"><a class="nav-link" href="./logout.php">logout</a></li>
                 <li class="nav-item"><a class="nav-link" href="./lista.php">lista</a></li>
                 <li class="nav-item"><a class="nav-link" href="./skriva.php">Skriv inlägg</a></li>
-                <?php } ?>
                 <li class="nav-item"><a class="nav-link active" href="./lista-blogg.php">Inlägg</a></li>
                 <li class="nav-item"><a class="nav-link" href="./hitta.php">Sök</a></li>
+                <li class="anamn"><?php echo $_SESSION['anamn'] . "(" . $_SESSION['antal'] . ")"?></li>
+                <?php } ?>
             </ul>
         </nav>
         <?php

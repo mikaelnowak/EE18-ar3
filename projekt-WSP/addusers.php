@@ -14,7 +14,7 @@ include "./resurser/cssColorNames.php";?>
         <form action="#" method="POST">
             <label>User name<input type="text" name="user-name" autocomplete="off" required></label>
             <label>User color<input type="text" name="user-color" autocomplete="off" required></label>
-            <label>Password<input type="passowrd" name="user-pass-1" required></label>
+            <label>Password<input type="password" name="user-pass-1" required></label>
             <label>Verify password<input type="password" name="user-pass-2" required></label>
             <button type="submit">Add user</button>
         </form>
