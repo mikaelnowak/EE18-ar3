@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>querySelector() och value</title>
+    <link rel="stylesheet" href="style (1).css">
+</head>
+<body>
+    <div class="kontainer">
+        <h1>Smileys</h1>
+        <h2>Input</h2>
+        <label>Ange text <input class="text" type="text"></label>
+        <button>Ny rad</button>
+        <button id="tom">Töm</button>
+        <br>
+
+        <button id="f1">😀</button>
+        <button id="f2">😡</button>
+        <button id="f3">🤯</button>
+        <button id="f4">🤡</button>
+
+        <h2>Output</h2>
+        <label>Svar <textarea class="svar" cols="30" rows="10" readonly></textarea>
+        </label>
+    </div>
+    <script>
+        const eText = document.querySelector('.text');
+        const eNyRad = document.querySelector('button');
+        const eTom = document.querySelector('#tom');
+        const eEmoji1 = document.querySelector('#f1');
+        const eEmoji2 = document.querySelector('#f2');
+        const eEmoji3 = document.querySelector('#f3');
+        const eEmoji4 = document.querySelector('#f4');
+        const eSvar = document.querySelector('.svar');
+
+        eNyRad.addEventListener('click', function() {
+            eSvar.value += eText.value + '\n';
+            eText.value = "";
+        });
+
+        eTom.addEventListener('click', function() {
+            eSvar.value = "";
+            eText.value = "";
+        });
+
+        eEmoji1.addEventListener('click', function() {
+            eSvar.value += '😀';
+        });
+
+        eEmoji2.addEventListener('click', function() {
+            eSvar.value += '😡';
+        });
+
+        eEmoji3.addEventListener('click', function() {
+            eSvar.value += '🤯';
+        });
+
+        eEmoji4.addEventListener('click', function() {
+            eSvar.value += '🤡';
+        });
+    </script>
+</body>

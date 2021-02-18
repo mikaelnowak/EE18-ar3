@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Träning</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="kontainer">
+        <h1>asd</h1>
+        <h2>input</h2>
+        <label>Ange förnamn <input class="fnamn" type="text"></label>
+        <button>skicka</button>
+        <h2>output</h2>
+        <label>Svar <textarea class="svar" cols="30" rows="10"></textarea></label>
+    </div>
+    <script>
+        const eFnamn = document.querySelector('.fnamn');
+        const eSvar = document.querySelector('.svar');
+
+        addEventListener('click', function(){
+            var svar = eFnamn.value;
+            if (svar == 'eyy') {
+                eSvar.value = "Ja visst gör det ont när knoppar brister" +
+                                "Varför skulle annars våren tveka?" +
+                                "Varför skulle all vår heta längtan" +  
+                                "bindas i det frusna bitterbleka?" +
+                                "Höljet var ju knoppen hela vintern." +
+                                "Vad är det för nytt, som tär och spränger?" +
+                                "Ja visst gör det ont när knoppar brister," +
+                                "ont för det som växer" +
+                                "och det som stänger.";
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,13 +1,4 @@
-
 <?php
-/*
-enkel blogg med databas
-* PHP version 7
-* @category   Webb med databas
-* @author     Mikael Nowak <mikael.nowak@elev.ga.ntig.se>
-* @license    PHP CC
-*/
-//Hämta kod från en annan fil
 include "./resurser/conn.php";
 session_start();
 ?>
@@ -42,7 +33,7 @@ session_start();
         </nav>
         <?php
         // 2. Ställ en SQL-fråga
-        $sql = "SELECT * FROM blogg";
+        $sql = ("SELECT title, content, postdate, anamn FROM blogg INNER JOIN user ON blogg.user_id=user.id ORDER BY blogg.id DESC");
         $result = $conn->query($sql);
 
         // Gick det bra?
@@ -52,7 +43,8 @@ session_start();
 
         // Presentera resultatet
         while ($rad = $result->fetch_assoc()) {
-            echo "<div class=\"lista\">
+            echo "<div class=\"inlagg\">
+                    <h4>Created by: $rad[anamn]</h4>
                     <h5><strong>$rad[title]</strong></h5>
                     <p>$rad[postdate]</p>
                     <p>$rad[content]</p>
