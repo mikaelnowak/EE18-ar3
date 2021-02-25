@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Prov 2e</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="prov2e.css">
+    <script defer src="prov2e.js"></script>
+</head>
+<body>
+    <div class="kontainer">
+        <h1>Kaloriförbrukning</h1>
+        <h2>Input</h2>
+        <h4>1 pass = 30 min</h4>
+        <div class="grid31">
+            <label>Promenad, lätt 107 kcal</label>
+            <input autofocus class="form-control" class="promenad" type="text">
+            <label>Jogging, lätt 240kcal</label>
+            <input class="form-control" class="jogging" type="text">
+            <label>Styrketräning, medeltungt 350 kcal</label>
+            <input class="form-control" class="styrka" type="text">
+            <label>Gå i trappor 540 kcal</label>
+            <input class="form-control" class="trappor" type="text">
+            <br><button class="btn btn-primary">Summera</button>
+        </div>
+        <h2>Output</h2>
+        <div class="grid11">
+            <h5>Total tid</h5>
+            <h5>Total kcal</h5>
+            <p class="lista1"></p>
+            <p class="lista2"></p>
+        </div>
+        <h5>Aktiviteten med högsta kaloriförbrukning</h5>
+        <p class="tyngsta"></p>
+    </div>
+    <script src="./prov2e.js"></script>
+</body>
+</html>
