@@ -3,28 +3,28 @@ const eAntal = document.querySelector('.antal');
 const ePlus = document.querySelector('.plus');
 const eSumma = document.querySelector('.summa');
 
-var antal = 0;
+var antal = 1;
+
+summa();
 
 eMinus.addEventListener('click', function() {
     if (antal > 0) {
         antal--;
-        eAntal.value = antal;
         summa();
     }
 });
 
 ePlus.addEventListener('click', function() {
     antal++;
-    eAntal.value = antal;
     summa();
 });
 
-eAntal.addEventListener('change', function() {
+eAntal.addEventListener('input', function() {
     antal = eAntal.value;
     summa();
 });
 
 function summa() {
-    //console.log("hej");
+    eAntal.value = antal;
     eSumma.textContent = antal * 49 + ' kr';
 }
