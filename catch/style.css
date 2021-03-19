@@ -1,0 +1,10 @@
+.content {
+
+}
+canvas {
+    display: block;
+    background: #69883E;
+    margin: auto;
+    border: 10px solid rgb(0, 100, 0);
+    border-radius: 5px;
+}

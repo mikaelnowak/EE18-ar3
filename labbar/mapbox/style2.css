@@ -16,3 +16,9 @@ body {
 .mapboxgl-popup-content img {
     width: 100%;
 }
+
+p {
+    border: none;
+    background: none;
+    margin-bottom: 0;
+}
