@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <canvas></canvas>
+    <script>
+        //Find canvas
+        const canvas = document.querySelector('canvas');
+
+        //Canvas
+        var ctx = canvas.getContext('2d');
+
+        var rover = new Image();
+        rover.src = './Solid256dotSquare16_16_leaf.png';
+        var roverX = canvas.width / 2, roverY = canvas.height / 2;
+
+        //Animation loop
+        function animation() {
+            ctx.clearRect(canvas.width, canvas.height);
+            ctx.drawImage(rover, roverX, roverY, 100, 100);
+
+            requestAnimationFrame(animation);
+        }
+        animation();
+    </script>
+</body>
+</html>

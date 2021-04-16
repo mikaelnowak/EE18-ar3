@@ -1,0 +1,10 @@
+body {
+    background: rgb(255, 217, 182);
+}
+
+canvas {
+    border: 3px solid #888;
+    background: url('./moon-surface.jpg');
+    display: block;
+    margin: auto;
+}

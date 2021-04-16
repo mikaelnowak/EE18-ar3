@@ -1,0 +1,18 @@
+body {
+    background: #000;
+}
+
+canvas {
+    background: url('./bilder/bg.png');
+    margin: auto;
+    display: block;
+}
+
+h1 {
+    color: #fff;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
