@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.css' rel='stylesheet' />
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="kontainer">
+        <h1>Geolocation</h1>
+        <p></p>
+        <div id="map"></div>
+    </div>
+    <script>
+        const p = document.querySelector('p');
+
+        mapboxgl.accessToken = 'pk.eyJ1IjoiZ3VubmFybnRpIiwiYSI6ImNrbDZkcnFjdDBvNGUycXFwc2RmbzM3bHAifQ.IlYnjpgsvyrVe-IC6k3RsQ'; // replace this with your access token
+
+        var map = new mapboxgl.Map({
+            container: 'map',
+            style: 'mapbox://styles/gunnarnti/ckm1xg7kxamz717qkr8lc8wqg',
+            center: [18.066675, 59.326885],
+            zoom: 11
+        });
+
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(position);
+        } else {
+            p.textContent = "Funkar inte";
+        }
+
+        function position(pos) {
+            var lat = pos.coords.latitude;
+            var lon = pos.coords.longitude;
+
+            p.textContent = "lat: " + lat + ", lon: " + lon;
+
+            var m1 = new mapboxgl.Marker()
+                .setLngLat([lon, lat])
+                .addTo(map);
+        }
+    </script>
+</body>
+</html>

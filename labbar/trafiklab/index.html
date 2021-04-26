@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="kontainer">
+        <h1>Geolocation</h1>
+        <p></p>
+    </div>
+    <script>
+        const p = document.querySelector('p');
+
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(position);
+        } else {
+            p.textContent = "Funkar inte";
+        }
+
+        function position(pos) {
+            var lat = pos.coords.latitude;
+            var lon = pos.coords.longitude;
+
+            p.textContent = "lat: " + lat + ", lon: " + lon;
+        }
+    </script>
+</body>
+</html>
