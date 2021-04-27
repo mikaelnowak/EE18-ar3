@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Geolocation</title>
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.js'></script>
+    <link rel="stylesheet" href="style copy.css">
+</head>
+<body>
+    <div class="kontainer">
+        <div id="map"></div>
+    </div>
+    <script>
+        // Hitta element
+        const mappen = document.getElementById("map");
+
+        mapboxgl.accessToken = 'pk.eyJ1IjoiZ3VubmFybnRpIiwiYSI6ImNrbDZkcnFjdDBvNGUycXFwc2RmbzM3bHAifQ.IlYnjpgsvyrVe-IC6k3RsQ'; // replace this with your access token
+
+        var map = new mapboxgl.Map({
+            container: 'map',
+            style: 'mapbox://styles/gunnarnti/ckm1xg7kxamz717qkr8lc8wqg',
+            center: [18.066675, 59.326885],
+            zoom: 8
+        });
+
+        // Är geolocation påslagen?
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(visaPosition);
+        } else {
+            p.textContent = "Kan inte hitta din position. Din webbläsare är för gammal!";
+        }
+
+        // Skriv ut positionen
+        function visaPosition(position) {
+            var latitude = position.coords.latitude;
+            var longitude = position.coords.longitude;
+
+            p.innerHTML = "Din position är: latitude = " + latitude + ", longitude = " + longitude + "<br>";
+
+            // Omvandla lat & lon till ett POST-paket
+            // Simulerar ett formulär
+            var postData = new FormData();
+            postData.append("lat", latitude);
+            postData.append("lon", longitude);
+
+            // Anropa ett backend-skript
+            // Samtidigt skicka lat & lon
+            // Ta emot svaret
+            fetch("./backend.php", {
+                method: "POST",                 // Ungefär som ett formulär
+                body: postData
+            })
+/*             .then(response => {
+                console.log(response.text());
+            })  */ 
+            
+            // Tar emot json-paket
+            .then(response => response.json())  // Tar emot json-paket
+            .then(stops => {                    // stops = hållplatser
+                // Loopa igenom array stops
+                stops.forEach(stop => {
+                    map.on("click", function(e) {
+                    //console.log('hej', e.lngLat);
+
+                    var marker1 = new mapboxgl.Marker()
+                        .setLngLat(e.lngLat)
+                        .addTo(map);
+                    });
+                });
+            })
+        }
+    </script>
+</body>
+</html>
