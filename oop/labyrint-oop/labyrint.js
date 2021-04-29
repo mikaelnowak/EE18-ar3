@@ -24,11 +24,14 @@ var karta = [
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
 ];
 
-var spelare = {
-    x: 25,
-    y: 25,
-    rotation: 0,
-    pic: new Image(),
+class Spelare {
+    constructor() {
+        this.x = 25;
+        this.y = 25;
+        this.rotation = 0;
+        this.pic = new Image();
+        this.pic.src = "./pics/nyckelpiga.png";
+    }
     draw() {
         ctx.save();
         ctx.translate(this.x, this.y);
@@ -37,52 +40,40 @@ var spelare = {
         ctx.restore();
     }
 }
-var mynt1 = {
-    x: 1,
-    y: 1,
-    pic: new Image(),
+class Mynt {
+    constructor() {
+        this.x = Math.floor(Math.random() * 16);
+        this.y = Math.floor(Math.random() * 12);
+        this.pic = new Image();
+        this.pic.src = "./pics/Coin-icon.png";
+    }
     draw() {
         ctx.drawImage(this.pic, this.x * 50, this.y * 50, 50, 50);
     }
 }
-var mynt2 = {
-    x: 1,
-    y: 2,
-    pic: new Image(),
+class Monster {
+    constructor() {
+        this.x = Math.floor(Math.random() * 16);
+        this.y = Math.floor(Math.random() * 12);
+        this.pic = new Image();
+        this.pic.src = "./pics/Zombie-icon.png";
+    }
     draw() {
         ctx.drawImage(this.pic, this.x * 50, this.y * 50, 50, 50);
     }
 }
-var mynt3 = {
-    x: 1,
-    y: 3,
-    pic: new Image(),
-    draw() {
-        ctx.drawImage(this.pic, this.x * 50, this.y * 50, 50, 50);
-    }
+var spelare = new Spelare();
+var monster = new Monster();
+
+var mynten = [];
+for (let i = 0; i < 5; i++) {
+    mynten.push(new Mynt());
 }
-var monster1 = {
-    x: 1,
-    y: 1,
-    pic: new Image(),
-    draw() {
-        ctx.drawImage(this.pic, this.x * 50, this.y * 50, 50, 50);
-    }
+
+var monsters = [];
+for (let i = 0; i < 3; i++) {
+    monsters.push(new Monster());
 }
-var monster2 = {
-    x: 1,
-    y: 2,
-    pic: new Image(),
-    draw() {
-        ctx.drawImage(this.pic, this.x * 50, this.y * 50, 50, 50);
-    }
-}
-spelare.pic.src = "./pics/nyckelpiga.png";
-mynt1.pic.src = "./pics/Coin-icon.png";
-mynt2.pic.src = "./pics/Coin-icon.png";
-mynt3.pic.src = "./pics/Coin-icon.png";
-monster1.pic.src = "./pics/Zombie-icon.png";
-monster2.pic.src = "./pics/Zombie-icon.png";
 
 function ritaKartan() {
     for (var j = 0; j < 12; j++) {
@@ -100,12 +91,11 @@ function loopen() {
     ctx.clearRect(0, 0, 800, 600);
 
     ritaKartan();
+
     spelare.draw();
-    mynt1.draw();
-    mynt2.draw();
-    mynt3.draw();
-    monster1.draw();
-    monster2.draw();
+    
+    mynten.forEach(mynt => mynt.draw());
+    monsters.forEach(monster => monster.draw());
 
     requestAnimationFrame(loopen);
 }

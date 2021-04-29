@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <script>
+        //---------------------------
+
+        //Use left joystick to manipulate count
+
+        /* var count = 500;
+
+        function loop() {
+            requestAnimationFrame(loop);
+            const gamepad = navigator.getGamepads()[0];
+
+            if (!gamepad) return;
+
+            count += gamepad.axes[0];
+
+            console.log(count);
+        }
+        loop(); */
+        //----------------------------
+
+        //Connect one/more controllers
+
+        /* window.addEventListener("gamepadconnected", function(e) {
+        console.log("Gamepad connected at index %d: %s. %d buttons, %d axes.",
+            e.gamepad.index, e.gamepad.id,
+            e.gamepad.buttons.length, e.gamepad.axes.length);
+        });
+
+        window.addEventListener("gamepaddisconnected", function(e) {
+        console.log("Gamepad disconnected from index %d: %s",
+            e.gamepad.index, e.gamepad.id);
+        }); */
+
+        //----------------------------
+
+        //Get all controllers info
+        
+        function loop() {
+            console.log(navigator.getGamepads());
+        }
+
+        loop();
+
+    </script>
+</body>
+</html>
