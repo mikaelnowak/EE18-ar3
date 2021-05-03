@@ -12,19 +12,30 @@
 
         //Use left joystick to manipulate count
 
+<<<<<<< HEAD
         var count = 500;
 
+=======
+        
+>>>>>>> 88f0ae50832857a795cc458effc72fd3c7ba6a3d
         function loop() {
             requestAnimationFrame(loop);
             const gamepad = navigator.getGamepads()[0];
 
             if (!gamepad) return;
 
-            count += gamepad.axes[0];
+            if (gamepad.axes[0] == 1 || gamepad.axes[0] == -1) {
+                count += gamepad.axes[0];
+            }
 
             console.log(count);
         }
+<<<<<<< HEAD
         loop();
+=======
+        loop(); */
+
+>>>>>>> 88f0ae50832857a795cc458effc72fd3c7ba6a3d
         //----------------------------
 
         //Connect one/more controllers
@@ -42,6 +53,7 @@
 
         //----------------------------
 
+<<<<<<< HEAD
         //Get all controllers info
         
         /* function loop() {
@@ -49,6 +61,24 @@
         }
 
         loop(); */
+=======
+        var gamepads = {};
+
+        function gamepadHandler(event, connecting) {
+            var gamepad = event.gamepad;
+            // Note:
+            // gamepad === navigator.getGamepads()[gamepad.index]
+
+            if (connecting) {
+                gamepads[gamepad.index] = gamepad;
+            } else {
+                delete gamepads[gamepad.index];
+            }
+        }
+
+        window.addEventListener("gamepadconnected", function(e) { gamepadHandler(e, true); }, false);
+        window.addEventListener("gamepaddisconnected", function(e) { gamepadHandler(e, false); }, false);
+>>>>>>> 88f0ae50832857a795cc458effc72fd3c7ba6a3d
 
     </script>
 </body>
