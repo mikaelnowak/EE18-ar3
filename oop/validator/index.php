@@ -3,39 +3,53 @@
     $password = filter_input(INPUT_POST, "pass", FILTER_SANITIZE_STRING);
     $email = filter_input(INPUT_POST, "mail", FILTER_SANITIZE_STRING);
 
-    $resultat = "";
+    $errors = [];
 
     function validateUsername($data)
     {
-        global $resultat;
+        global $errors;
         if (!preg_match("/[a-zA-Z0-9]{6,12}/", $data)) {
-            $resultat = "<p>fel</p>";
+            $errors['username'][] = "fel";
         }
     }
 
     function validatePassword($data)
     {
-        global $resultat;
+        global $errors;
         if (!preg_match("/[a-zåäö]/", $data) > 0) {
-            $resultat = 'password must contain a least one lowercase character';
+            $errors['password'][] = "password must contain a least one lowercase character<br>";
         }
         if (!preg_match("/[A-ZÅÄÖ]/", $data) > 0) {
-            $resultat = 'password must contain a least one uppercase character';
+            $errors['password'][] .= "password must contain a least one uppercase character<br>";
         }
         if (!preg_match("/[0-9]/", $data) > 0) {
-            $resultat = 'password must contain a least one alphanumeric';
+            $errors['password'][] .= "password must contain a least one alphanumeric<br>";
         }
         if (!preg_match("/[#%&¤_\*\-\+\@\!\?\(\)\[\]\$£€]/", $data) > 0) {
-            $resultat = 'password must contain a least one special character';
+            $errors['password'][] .= "password must contain a least one special character<br>";
         }
         if (!preg_match("/^.{8,40}$/", $data) > 0) {
-            $resultat = 'password must at least 8 character long';
+            $errors['password'][] .= "password must at least 8 character long";
         }
     }
 
     function validateEmail($data)
     {
+        global $errors;
+        if (!filter_var($data, FILTER_VALIDATE_EMAIL)) {
+            $errors['email'][] = "fel";
+        }
+    }
 
+    function showErrors($type)
+    {
+        global $errors;
+
+        echo "<p>";
+        foreach ($errors[$type] as $error) {
+            echo "$error";
+        }
+        echo "</p>";
     }
 
     if ($username && $password && $email) {
@@ -62,10 +76,16 @@
         <form action="#" method="post">
             <label>Username: <input type="text" name="user" require></label>
             <?php
-                echo $resultat;
+                showErrors('username');
             ?>
             <label>Password: <input type="password" name="pass" require></label>
+            <?php
+                showErrors('password');
+            ?>
             <label>Email<input type="email" name="mail" require></label>
+            <?php
+                showErrors('email');
+            ?>
             <button>Submit</button>
         </form>
     </div>

@@ -34,7 +34,7 @@ include "./resurser/cssColorNames.php";?>
                 if (strlen($userName) <= 16) {
                     //Är namnet unik?
                     foreach ($selectFromUser as $user) {
-                        if ($user[user_name] == $userName) {
+                        if ($user['user_name'] == $userName) {
                             //Om namnet inte är unik
                             $userName = '';
                             $errorMessage[0] = "<p>There is allready a user named $user[name], please get another username and try again</p>";

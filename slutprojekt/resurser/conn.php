@@ -2,20 +2,14 @@
 error_reporting(E_ALL);
 
 $host = "localhost";
-$db = "blogg";
-$user = "admin";
-$pass = "pass";
-
-/* SKOLA
-$host = "localhost";
-$db = "blogg";
-$user = "blogg";
-$pass = "54EJGQKO6sOyy8lq";
- */
+$db = "slutprojekt";
+$user = "slutprojekt";
+$pass = "gj97k1wT0y0rPFll";
 
 //Skapa en anslutning
 $conn = new mysqli($host, $user, $pass, $db);
 
+//Kontrollera om man är ansluten
 if ($conn->connect_error) {
     die('Ended:' . $conn->error);
 }
