@@ -25,13 +25,18 @@ class Login
     {
         foreach ($dbUsername as $usernames) {
             if ($usernames['username'] == $this->data['username']) {
-                return $data = true;
+                return $responce = $this->data['username'];
             }
         }
     }
     
-    public function password()
+    public function password($checkPassword, $newLocation)
     {
-        
+        $confirmPassword = password_verify($this->data['password'], $checkPassword['hash']);
+        if (!$confirmPassword) {
+            echo '-';
+        } else {
+            echo header("Location: $newLocation");
+        }
     }
 }

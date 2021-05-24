@@ -9,13 +9,14 @@ $check;
 $allUsernames = $conn->query("SELECT username FROM users");
 
 if (isset($_POST['login'])) {
-    $allHash = $conn->query("SELECT hash FROM users");
-    
     $login->set($_POST);
     $isUsernameInDB = $login->username($allUsernames);
     
     if ($isUsernameInDB) {
-        
+        $getUserHashFromDB = $conn->query("SELECT hash FROM users WHERE username=\"$isUsernameInDB\"");
+        $userHash = $getUserHashFromDB->fetch_assoc();
+
+        $login->password($userHash, './game.php');
     }
 }
 
