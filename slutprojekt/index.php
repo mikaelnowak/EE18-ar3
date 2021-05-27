@@ -1,7 +1,8 @@
 <?php
-include "./resurser/conn.php";
-include "./classes/Login.php";
-include "./classes/Registration.php";
+session_start();
+include './resurser/conn.php';
+include './classes/Login.php';
+include './classes/Registration.php';
 $login = new Login();
 $signIn = new Registration();
 
@@ -16,7 +17,7 @@ if (isset($_POST['login'])) {
         $getUserHashFromDB = $conn->query("SELECT hash FROM users WHERE username=\"$isUsernameInDB\"");
         $userHash = $getUserHashFromDB->fetch_assoc();
 
-        $login->password($userHash, './game.php');
+        $login->password($userHash, 'game.php');
     }
 }
 
