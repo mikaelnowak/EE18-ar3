@@ -30,21 +30,73 @@
         width: 100%
 
 header
+    display: grid
     height: 70px
     background: #888
+    grid-template-columns: 1fr 1fr
 
-    li
-        margin: 0 5px
+    h1
+        display: inline-block
+        font-size: 3em
+        margin-top: 5px
 
-        h1
-            display: inline-block
-            font-size: 3em
+    img
+        height: 50px
+        margin-top: -25px
 
-        img
+    ul
+        height: 70px
+
+        a
+            font-size: 2.25em
+
+    .nav-item
+        align-self: right
+
+        button
             height: 50px
-            margin-top: 10px
+            margin: 9px 5px 0 5px
 
 .game-container
-    background-color: black
-    height: 500px
+    height: 600px
+    width: 100%
+
+    canvas
+        display: inline
+
+    .shop
+        background: lightgrey
+        display: inline
+        width: 300px
+        height: 600px
+        margin-top: -500px
+
+        .resources
+            height: 40px
+
+            li
+                margin: 0 5px
+                padding: 5px 0
+
+                p
+                    display: inline-block
+                    font-size: 1.2em
+                    margin-bottom: 0
+    
+        .upgrade
+            height: 560px
+
+            .buy
+                background: gray
+                height: min-content
+                padding: 20px
+
+                p
+                    margin: 0
+                    padding: 0
+
+                button
+                    margin-top: 10px
+
+table
     width: 500px

@@ -34,10 +34,11 @@ if (isset($_POST['signIn'])) {
     $data = $signIn->registerDB();
 
     if ($data) {
-        $check = $conn->query("INSERT INTO users (username, fname, lname, email, hash) VALUES (\"$data[0]\", \"$data[1]\", \"$data[2]\", \"$data[3]\", \"$data[4]\")");
+        $check1 = $conn->query("INSERT INTO users (username, fname, lname, email, hash) VALUES (\"$data[0]\", \"$data[1]\", \"$data[2]\", \"$data[3]\", \"$data[4]\")");
+        $check2 = $conn->query("INSERT INTO game_progres (username, wood, stone, plant, wood_upgrade, stone_upgrade, plant_upgrade, speed) VALUE (\"$data[0]\", '0', '0', '0', '0', '0', '0', '0')");
     }
 
-    if ($check) {
+    if ($check1 && $check2) {
         echo '<div class="alert alert-success" role="alert">
         <p>Your account is now registrated! You can login now if u want to.</p>
         </div>';
@@ -57,7 +58,7 @@ if (isset($_POST['signIn'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title></title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
-    <link rel="stylesheet" href="./css/slutprojekt.css">
+    <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
     <!-- Boxen -->

@@ -39,27 +39,98 @@
 }
 
 header {
+  display: -ms-grid;
+  display: grid;
   height: 70px;
   background: #888;
+  -ms-grid-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
 }
 
-header li {
-  margin: 0 5px;
-}
-
-header li h1 {
+header h1 {
   display: inline-block;
   font-size: 3em;
+  margin-top: 5px;
 }
 
-header li img {
+header img {
   height: 50px;
-  margin-top: 10px;
+  margin-top: -25px;
+}
+
+header ul {
+  height: 70px;
+}
+
+header ul a {
+  font-size: 2.25em;
+}
+
+header .nav-item {
+  -ms-flex-item-align: right;
+      -ms-grid-row-align: right;
+      align-self: right;
+}
+
+header .nav-item button {
+  height: 50px;
+  margin: 9px 5px 0 5px;
 }
 
 .game-container {
-  background-color: black;
-  height: 500px;
+  height: 600px;
+  width: 100%;
+}
+
+.game-container canvas {
+  display: inline;
+}
+
+.game-container .shop {
+  background: lightgrey;
+  display: inline;
+  width: 300px;
+  height: 600px;
+  margin-top: -500px;
+}
+
+.game-container .shop .resources {
+  height: 40px;
+}
+
+.game-container .shop .resources li {
+  margin: 0 5px;
+  padding: 5px 0;
+}
+
+.game-container .shop .resources li p {
+  display: inline-block;
+  font-size: 1.2em;
+  margin-bottom: 0;
+}
+
+.game-container .shop .upgrade {
+  height: 560px;
+}
+
+.game-container .shop .upgrade .buy {
+  background: gray;
+  height: -webkit-min-content;
+  height: -moz-min-content;
+  height: min-content;
+  padding: 20px;
+}
+
+.game-container .shop .upgrade .buy p {
+  margin: 0;
+  padding: 0;
+}
+
+.game-container .shop .upgrade .buy button {
+  margin-top: 10px;
+}
+
+table {
   width: 500px;
 }
 /*# sourceMappingURL=style.css.map */

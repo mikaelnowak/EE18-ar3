@@ -19,7 +19,6 @@ password() - Confirming password with following arguments (The users hash from D
 class Login
 {
     // Properties
-    private $errors = [];
     private $data;
 
     // Methods
